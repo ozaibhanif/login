@@ -20,7 +20,61 @@
 
 
 <script>
-    
+    const form = document.querySelector('form');
+const emailInput = document.querySelector('#email');
+const passwordInput = document.querySelector('#password');
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  
+  const email = emailInput.value;
+  const password = passwordInput.value;
+  
+  if (!validateEmail(email)) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  
+  if (!validatePassword(password)) {
+    alert('Please enter a valid password.');
+    return;
+  }
+  
+  // Submit the form
+  form.submit();
+});
+
+function validateEmail(email) {
+  // Email validation code goes here
+}
+
+function validatePassword(password) {
+  // Password validation code goes here
+}
+
+function validateEmail(email) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
+
+
+function validatePassword(password) {
+  const minLength = 8;
+  const hasUppercase = /[A-Z]/.test(password);
+  const hasLowercase = /[a-z]/.test(password);
+  const hasNumber = /\d/.test(password);
+  const hasSymbol = /[$&+,:;=?@#|'<>.^*()%!-]/.test(password);
+
+  return (
+    password.length >= minLength &&
+    hasUppercase &&
+    hasLowercase &&
+    hasNumber &&
+    hasSymbol
+  );
+}
+
+
 </script>
 
 </body>
